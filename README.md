@@ -7,3 +7,7 @@ Una aplicacion del tiempo hecha con react, consumiendo informacion de la API htt
 - Se puede seleccionar unidad de temperatura
 - Diferentes idiomas
 - Se puede seleccionar diferentes localizaciones
+
+## Atribuciones
+
+- Icono de la barra de navegacion: https://www.flaticon.es/autores/kiranshastry

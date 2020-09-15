@@ -1,0 +1,17 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+:root {
+  --color-theme: rgb(40, 116, 166);
+  --font: 'Roboto', sans-serif;
+}
+
+html, body, #root{
+  background-color: gray;
+  margin: 0;
+  height: 100%;
+}
