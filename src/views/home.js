@@ -13,7 +13,6 @@ class Home extends Component {
       daily: {},
     };
 
-    this.upCity = this.upCity.bind(this);
     this.onSearch = this.onSearch.bind(this);
   }
 
@@ -21,12 +20,12 @@ class Home extends Component {
     this.getInfoWeather(this.state.city);
   }
 
-  getInfoWeather(city) {
+  getInfoWeather() {
     this.setState({
       status: 'searching',
     });
-    /* getInfoWeatherApi(city, this.handleWeater); */
-    getInfoWeatherApi(city, (status, data) => {
+
+    getInfoWeatherApi(this.state.city, (status, data) => {
       let { current, daily, hourly } = data;
       this.setState({
         status,
@@ -37,20 +36,16 @@ class Home extends Component {
     });
   }
 
-  upCity(city) {
-    this.setState({
-      city,
-    });
-  }
-
-  onSearch() {
-    this.getInfoWeather(this.state.city);
+  onSearch(city) {
+    this.setState({ city });
+    this.getInfoWeather(city);
   }
 
   render() {
     return (
       <main>
-        <SearchNav onChange={this.upCity} onSearch={this.onSearch} />
+        <SearchNav onSearch={this.onSearch} />
+        
       </main>
     );
   }

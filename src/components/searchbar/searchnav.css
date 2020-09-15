@@ -32,6 +32,11 @@ nav input {
   font-weight: 300;
 }
 
+nav input:focus ~ label,
+.writed {
+  opacity: 0 !important;
+}
+
 nav label {
   position: absolute;
   color: var(--color-font);
@@ -56,7 +61,7 @@ nav img {
   transition: height 0.3s;
 }
 
-nav img:hover{
+nav img:hover {
   height: 22px !important;
 }
 

@@ -7,17 +7,23 @@ class SearchNav extends Component {
     super();
     this.state = {
       isWrited: false,
+      value: '',
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
 
   onChange(e) {
     const { value } = e.target;
-    this.props.onChange(value);
     this.setState({
       isWrited: !(value === ''),
+      value,
     });
+  }
+
+  onClick() {
+    this.props.onSearch(this.state.value);
   }
 
   render() {
@@ -25,7 +31,7 @@ class SearchNav extends Component {
     return (
       <nav>
         <div>
-          <img src={search} onClick={this.props.onSearch}/>
+          <img onClick={this.onClick} src={search} />
           <input type="text" onChange={this.onChange} />
           <label className={isWrited ? 'writed' : ''}>Buscar ciudad</label>
         </div>
