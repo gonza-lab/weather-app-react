@@ -1,20 +1,23 @@
 .current-weather {
+  position: relative;
   background-color: var(--color-card);
   color: white;
   max-width: 500px;
   width: 100%;
   padding: 1em;
   border-radius: 10px;
-  -webkit-box-shadow: inset 0px -97px 111px -148px rgba(255, 255, 255, 1);
-  -moz-box-shadow: inset 0px -97px 111px -148px rgba(255, 255, 255, 1);
-  box-shadow: inset 0px -97px 111px -148px rgba(255, 255, 255, 1);
+  display: flex;
 }
 
 .current-weather > * {
+  width: 100%;
+}
+
+.current-weather .info > * {
   margin: 0;
 }
 
-.current-weather > * ~ * {
+.current-weather .info > * ~ * {
   margin-top: 30px;
   margin-bottom: 0;
 }
@@ -24,9 +27,19 @@
 }
 
 .current-weather .temp {
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 .current-weather .condition {
   font-size: 1.2rem;
+}
+
+.current-weather .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.current-weather .icon img {
+  width: 150px;
 }
