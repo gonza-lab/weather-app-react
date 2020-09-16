@@ -1,6 +1,6 @@
 nav {
   background-color: var(--color-theme);
-  height: 70px;
+  height: var(--height-nav);
   display: flex;
   align-items: center;
   justify-content: center;

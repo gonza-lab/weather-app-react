@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import getInfoWeatherApi from '../api/api.js';
 import SearchNav from '../components/searchbar/searchnav.js';
+import CurrentWeather from '../components/current/current.js';
 
 class Home extends Component {
   constructor(props) {
@@ -13,21 +14,19 @@ class Home extends Component {
       daily: {},
     };
 
-    this.onSearch = this.onSearch.bind(this);
+    this.getInfoWeather = this.getInfoWeather.bind(this);
   }
 
   componentDidMount() {
     this.getInfoWeather(this.state.city);
   }
 
-  getInfoWeather() {
-    this.setState({
-      status: 'searching',
-    });
-
-    getInfoWeatherApi(this.state.city, (status, data) => {
+  getInfoWeather(city) {
+    this.setState({ status: 'searching' });
+    getInfoWeatherApi(city, (status, data) => {
       let { current, daily, hourly } = data;
       this.setState({
+        city,
         status,
         current,
         daily,
@@ -36,17 +35,20 @@ class Home extends Component {
     });
   }
 
-  onSearch(city) {
-    this.setState({ city });
-    this.getInfoWeather(city);
-  }
-
   render() {
+    const { city, current } = this.state;
     return (
-      <main>
-        <SearchNav onSearch={this.onSearch} />
-        
-      </main>
+      <div>
+        <SearchNav onSearch={this.getInfoWeather} />
+        <main>
+          <div className="sep"></div>
+          {this.state.status !== 404 ? (
+            <CurrentWeather city={city} current={current} />
+          ) : (
+            '404'
+          )}
+        </main>
+      </div>
     );
   }
 }

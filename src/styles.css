@@ -7,11 +7,27 @@
 
 :root {
   --color-theme: rgb(40, 116, 166);
+  --color-card: rgb(40, 116, 166);
   --font: 'Roboto', sans-serif;
+  --height-nav: 70px; 
 }
 
 html, body, #root{
   background-color: gray;
   margin: 0;
   height: 100%;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sep{
+  height: var(--height-nav);
+}
+
+main > * ~ * {
+  margin-top: 2em;
 }
