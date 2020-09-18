@@ -1,31 +1,12 @@
 import React, { Component } from 'react';
+
 import getInfoWeatherApi from '../api/api.js';
+
 import SearchNav from '../components/searchbar/searchnav.js';
 import CurrentWeather from '../components/current/current.js';
-import moment from 'moment';
+import DailyWeather from '../components/daily/daily.js';
 
-function getTime(unix, offset) {
-  let utcHours = moment.unix(unix)._d.getUTCHours();
-  let hours = utcHours + offset / 3600;
-
-  while (hours > 24 || hours < 0) {
-    if (hours > 24) {
-      hours -= 24;
-    } else if (hours < 0) {
-      hours += 24;
-    }
-  }
-
-  if (hours >= 5 && hours <= 12) {
-    return { state: 'morning', hours };
-  } else if (hours > 12 && hours < 19) {
-    return { state: 'day', hours };
-  } else if (hours >= 19 && hours < 21) {
-    return { state: 'afternoon', hours };
-  } else if ((hours >= 21 && hours <= 24) || (hours >= 0 && hours < 5)) {
-    return { state: 'night', hours };
-  }
-}
+import getTimeZone from '../functions/getTimeZone.js';
 
 class Home extends Component {
   constructor(props) {
@@ -49,31 +30,42 @@ class Home extends Component {
   getInfoWeather(city) {
     this.setState({ status: 'searching' });
     getInfoWeatherApi(city, (status, data) => {
-      let { current, daily, hourly } = data;
-      const { state, hours } = getTime(current.dt, data.timezone_offset);
+      let { current, daily } = data;
+
+      console.log(data);
+      let state, hours;
+      if (data !== '404') {
+        ({ state, hours } = getTimeZone(current.dt, data.timezone));
+      }
       this.setState({
         city,
         status,
         current,
         daily,
-        hourly,
         state,
         hours,
+        offset: data.timezone,
       });
     });
   }
 
   render() {
-    const { city, current, status, state } = this.state;
+    const { city, current, daily, status, state, offset } = this.state;
     let element;
 
     if (status === 'searching') {
-      element = <div>Buscando</div>;
+      element = <div className="feed"><p>Buscando...</p></div>;
     } else if (status === 200) {
-      element = <CurrentWeather city={city} current={current} />;
+      element = (
+        <div>
+          <CurrentWeather city={city} current={current} />
+          <DailyWeather weather={daily} offset={offset} />
+        </div>
+      );
     } else if (status === 404) {
-      element = <div>No encontrado</div>;
+      element = <div className="feed"><p>404! No encontrado</p></div>;
     }
+
     return (
       <div className={state}>
         <SearchNav onSearch={this.getInfoWeather} />

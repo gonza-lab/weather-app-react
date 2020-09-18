@@ -4,8 +4,6 @@ Una aplicacion del tiempo hecha con react, consumiendo informacion de la API htt
 
 ## Funcionalidades
 
-- Se puede seleccionar unidad de temperatura
-- Diferentes idiomas
 - Se puede seleccionar diferentes localizaciones
 
 ## Atribuciones

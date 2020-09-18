@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './current.css';
-
-function uppperFirst(string) {
-  return string[0].toUpperCase() + string.substring(1);
-}
+import uppperFirst from '../../functions/upperFirst.js';
 
 function round(num, decimales = 2) {
   var signo = num >= 0 ? 1 : -1;

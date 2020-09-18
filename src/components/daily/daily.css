@@ -1,0 +1,49 @@
+.daily-weater {
+  display: flex;
+  max-width: 1000px;
+  width: 100%;
+  padding: 0 1em;
+  flex-wrap: wrap;
+}
+
+.daily-weater > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  margin: 0 0.5em;
+  padding: 1em 0;
+  max-width: 170px;
+  margin-bottom: 1em;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.daily-weater p {
+  text-align: center;
+  margin: 0;
+}
+
+.daily-weater > div > * ~ * {
+  margin-top: 16px;
+}
+
+.daily-weater div:first-child .date{
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.daily-weater .temp {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.daily-weater img{
+  width: 100px;
+  height: 100px;
+}
+
+@media (max-width: 900px){
+  
+}

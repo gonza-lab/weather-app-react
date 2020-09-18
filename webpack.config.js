@@ -12,7 +12,7 @@ module.exports = {
       template: './src/template.html',
     }),
   ],
-  devtool: 'inline-source-map',
+  /* devtool: 'inline-source-map', */
   entry: {
     polyfill: 'babel-polyfill',
     main: './src/app.js',
